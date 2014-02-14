@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class AlarmDetailsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		requestWindowFeature(Window.FEATURE_ACTION_BAR);
+
 		setContentView(R.layout.activity_details);
 
 		getActionBar().setTitle("Create New Alarm");
@@ -122,11 +125,15 @@ public class AlarmDetailsActivity extends Activity {
 			case R.id.action_save_alarm_details: {
 				updateModelFromLayout();
 				
+				AlarmManagerHelper.cancelAlarms(this);
+				
 				if (alarmDetails.id < 0) {
 					dbHelper.createAlarm(alarmDetails);
 				} else {
 					dbHelper.updateAlarm(alarmDetails);
 				}
+				
+				AlarmManagerHelper.setAlarms(this);
 				
 				setResult(RESULT_OK);
 				finish();

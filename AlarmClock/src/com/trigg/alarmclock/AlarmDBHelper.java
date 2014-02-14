@@ -53,7 +53,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
 		model.timeHour = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_HOUR));
 		model.timeMinute = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE));
 		model.repeatWeekly = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY)) == 0 ? false : true;
-		model.alarmTone = Uri.parse(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TONE)));
+		model.alarmTone = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TONE)) != "" ? Uri.parse(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TONE))) : null;
 		model.isEnabled = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_ENABLED)) == 0 ? false : true;
 		
 		String[] repeatingDays = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_DAYS)).split(",");
@@ -70,7 +70,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         values.put(Alarm.COLUMN_NAME_ALARM_TIME_HOUR, model.timeHour);
         values.put(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE, model.timeMinute);
         values.put(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY, model.repeatWeekly);
-        values.put(Alarm.COLUMN_NAME_ALARM_TONE, model.alarmTone.toString());
+        values.put(Alarm.COLUMN_NAME_ALARM_TONE, model.alarmTone != null ? model.alarmTone.toString() : "");
         values.put(Alarm.COLUMN_NAME_ALARM_ENABLED, model.isEnabled);
         
         String repeatingDays = "";

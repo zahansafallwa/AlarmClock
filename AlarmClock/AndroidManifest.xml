@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
+    
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,16 @@
         </activity>
         
         <activity android:name="com.trigg.alarmclock.AlarmDetailsActivity" />
+
+        <service android:name="com.trigg.alarmclock.AlarmService" 
+            android:enabled="true"/>
+        
+        <receiver android:name="com.trigg.alarmclock.AlarmManagerHelper" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        
     </application>
 
 </manifest>

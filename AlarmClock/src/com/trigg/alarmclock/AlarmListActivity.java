@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 public class AlarmListActivity extends ListActivity {
 
@@ -14,7 +15,8 @@ public class AlarmListActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_alarm_list);
+		
+		requestWindowFeature(Window.FEATURE_ACTION_BAR);
 
 		mAdapter = new AlarmListAdapter(this, dbHelper.getAlarms());
 		
@@ -51,9 +53,13 @@ public class AlarmListActivity extends ListActivity {
 	}
 	
 	public void setAlarmEnabled(long id, boolean isEnabled) {
+		AlarmManagerHelper.cancelAlarms(this);
+		
 		AlarmModel model = dbHelper.getAlarm(id);
 		model.isEnabled = isEnabled;
 		dbHelper.updateAlarm(model);
+		
+		AlarmManagerHelper.setAlarms(this);
 	}
 
 	public void startAlarmDetailsActivity(long id) {
