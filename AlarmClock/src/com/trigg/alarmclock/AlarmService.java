@@ -14,7 +14,8 @@ public class AlarmService extends Service {
 	}
 	
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {		
+	public int onStartCommand(Intent intent, int flags, int startId) {	
+		AlarmManagerHelper.setAlarms(this);
 		return super.onStartCommand(intent, flags, startId);
 	}
 	
