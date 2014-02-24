@@ -9,6 +9,7 @@
         android:targetSdkVersion="18" />
     
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.trigg.alarmclock.AlarmScreen" />
         
         <activity android:name="com.trigg.alarmclock.AlarmDetailsActivity" />
 

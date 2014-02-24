@@ -107,7 +107,7 @@ public class AlarmManagerHelper extends BroadcastReceiver {
 		intent.putExtra(NAME, model.name);
 		intent.putExtra(TIME_HOUR, model.timeHour);
 		intent.putExtra(TIME_MINUTE, model.timeMinute);
-		intent.putExtra(TONE, model.alarmTone);
+		intent.putExtra(TONE, model.alarmTone.toString());
 		
 		return PendingIntent.getService(context, (int) model.id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 	}
