@@ -48,7 +48,9 @@ public class AlarmManagerHelper extends BroadcastReceiver {
 				
 				//First check if it's later in the week
 				for (int dayOfWeek = Calendar.SUNDAY; dayOfWeek <= Calendar.SATURDAY; ++dayOfWeek) {
-					if (alarm.getRepeatingDay(dayOfWeek - 1) && dayOfWeek >= nowDay && !(dayOfWeek == nowDay && alarm.timeHour <= nowHour && alarm.timeMinute <= nowMinute)) {
+					if (alarm.getRepeatingDay(dayOfWeek - 1) && dayOfWeek >= nowDay &&
+							!(dayOfWeek == nowDay && alarm.timeHour < nowHour) &&
+							!(dayOfWeek == nowDay && alarm.timeHour == nowHour && alarm.timeMinute <= nowMinute)) {
 						calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
 						
 						setAlarm(context, calendar, pIntent);
