@@ -75,7 +75,6 @@ public class CustomSwitch extends FrameLayout {
 		//Manage attributes
 		int[] attributeSet = { 
 				android.R.attr.text,
-				android.R.attr.textAppearance,
 				android.R.attr.checked
 		};
 		
@@ -83,8 +82,7 @@ public class CustomSwitch extends FrameLayout {
 
 		try {
 			label.setText(a.getText(0));
-			label.setTextAppearance(context, a.getIndex(1));
-			button.setChecked(a.getBoolean(2, false));
+			button.setChecked(a.getBoolean(1, false));
 		} finally {
 			a.recycle();
 		}
