@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
@@ -93,6 +94,15 @@ public class AlarmListAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View view) {
 				((AlarmListActivity) mContext).startAlarmDetailsActivity(((Long) view.getTag()).longValue());
+			}
+		});
+		
+		view.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View view) {
+				((AlarmListActivity) mContext).deleteAlarm(((Long) view.getTag()).longValue());
+				return true;
 			}
 		});
 		
