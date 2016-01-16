@@ -96,7 +96,10 @@ public class AlarmListActivity extends ListActivity {
 				//Notify the adapter the data has changed
 				mAdapter.notifyDataSetChanged();
 				//Set the alarms
-				AlarmManagerHelper.setAlarms(mContext);
+				if (dbHelper.getAlarms() != null)
+				{
+                                    AlarmManagerHelper.setAlarms(mContext);
+                                 }
 			}
 		}).show();
 	}
